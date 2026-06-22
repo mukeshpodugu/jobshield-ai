@@ -32,7 +32,7 @@ async function triggerScan(text) {
   flagList.innerHTML = '';
 
   try {
-    const res = await fetch('http://localhost:5000/api/scans/job', {
+    const res = await fetch('https://jobshield-ai-i679.onrender.com/api/scans/job', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
