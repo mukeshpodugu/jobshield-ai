@@ -1,0 +1,15 @@
+{
+  "name": "jobshield-ai",
+  "version": "1.0.0",
+  "description": "JobShield AI - Fake Job and Phishing Detection Platform",
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "fastapi": "cd fastapi_service && python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run fastapi\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
