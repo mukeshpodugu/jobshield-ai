@@ -4,6 +4,14 @@ JobShield AI is a modern, production-ready, full-stack cybersecurity application
 
 ---
 
+## 🚀 Live Deployments
+
+- **Web Application (Frontend)**: [https://jobshield-ai-phi.vercel.app](https://jobshield-ai-phi.vercel.app)
+- **API Server (Express Backend)**: [https://jobshield-ai-i679.onrender.com](https://jobshield-ai-i679.onrender.com)
+- **NLP Service (FastAPI Microservice)**: [https://jobshield-fastapi.onrender.com](https://jobshield-fastapi.onrender.com)
+
+---
+
 ## Technical Stack & Architecture
 
 ```mermaid
