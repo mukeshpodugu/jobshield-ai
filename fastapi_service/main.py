@@ -34,6 +34,10 @@ class SalaryRequest(BaseModel):
     salary: float = Field(..., gt=0, description="Offered annual salary in USD")
     experience_level: str = Field(..., description="Experience tier: Entry, Mid, or Senior")
 
+@app.get("/")
+def read_root():
+    return {"status": "online", "message": "JobShield AI NLP Engine"}
+
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "service": "jobshield-nlp-engine"}
