@@ -2,7 +2,7 @@ const axios = require('axios');
 const pdfParse = require('pdf-parse');
 const Scan = require('../models/Scan');
 
-const FASTAPI_URL = process.env.FASTAPI_URL || 'http://127.0.0.1:8000';
+const FASTAPI_URL = (process.env.FASTAPI_URL || 'http://127.0.0.1:8000').replace(/\/+$/, '');
 
 // Helper to extract text from buffer based on mimetype
 const extractTextFromBuffer = async (buffer, mimetype) => {
