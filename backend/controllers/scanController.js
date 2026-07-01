@@ -2,7 +2,7 @@ const axios = require('axios');
 const pdfParse = require('pdf-parse');
 const Scan = require('../models/Scan');
 
-const FASTAPI_URL = (process.env.FASTAPI_URL || 'http://127.0.0.1:8000').replace(/\/+$/, '');
+const FASTAPI_URL = (process.env.FASTAPI_URL || 'http://127.0.0.1:8000').trim().replace(/\/+$/, '');
 
 // Helper to extract text from buffer based on mimetype
 const extractTextFromBuffer = async (buffer, mimetype) => {
@@ -65,9 +65,18 @@ exports.analyzeJob = async (req, res) => {
       scanId: scan._id
     });
   } catch (error) {
-    console.error(error);
+    console.error("FastAPI Job Scan Request Failed!");
+    console.error("Target URL:", `${FASTAPI_URL}/analyze/job`);
+    console.error("Error Message:", error.message);
+    let msg = 'FastAPI NLP service is offline or unreachable';
     const statusCode = error.response ? error.response.status : 500;
-    const msg = error.response ? error.response.data.detail : 'FastAPI NLP service is offline or unreachable';
+    if (error.response) {
+      console.error("Response Status:", error.response.status);
+      console.error("Response Data:", error.response.data);
+      msg = (error.response.data && error.response.data.detail) 
+        ? error.response.data.detail 
+        : `FastAPI responded with status ${error.response.status}`;
+    }
     res.status(statusCode).json({ success: false, message: msg });
   }
 };
@@ -102,9 +111,18 @@ exports.analyzeEmail = async (req, res) => {
       scanId: scan._id
     });
   } catch (error) {
-    console.error(error);
+    console.error("FastAPI Email Scan Request Failed!");
+    console.error("Target URL:", `${FASTAPI_URL}/analyze/email`);
+    console.error("Error Message:", error.message);
+    let msg = 'FastAPI NLP service is offline or unreachable';
     const statusCode = error.response ? error.response.status : 500;
-    const msg = error.response ? error.response.data.detail : 'FastAPI NLP service is offline';
+    if (error.response) {
+      console.error("Response Status:", error.response.status);
+      console.error("Response Data:", error.response.data);
+      msg = (error.response.data && error.response.data.detail) 
+        ? error.response.data.detail 
+        : `FastAPI responded with status ${error.response.status}`;
+    }
     res.status(statusCode).json({ success: false, message: msg });
   }
 };
@@ -143,9 +161,18 @@ exports.analyzeSalary = async (req, res) => {
       scanId: scan._id
     });
   } catch (error) {
-    console.error(error);
+    console.error("FastAPI Salary Scan Request Failed!");
+    console.error("Target URL:", `${FASTAPI_URL}/analyze/salary`);
+    console.error("Error Message:", error.message);
+    let msg = 'FastAPI NLP service is offline or unreachable';
     const statusCode = error.response ? error.response.status : 500;
-    const msg = error.response ? error.response.data.detail : 'FastAPI NLP service is offline';
+    if (error.response) {
+      console.error("Response Status:", error.response.status);
+      console.error("Response Data:", error.response.data);
+      msg = (error.response.data && error.response.data.detail) 
+        ? error.response.data.detail 
+        : `FastAPI responded with status ${error.response.status}`;
+    }
     res.status(statusCode).json({ success: false, message: msg });
   }
 };
