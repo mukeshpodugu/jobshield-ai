@@ -62,7 +62,7 @@ export default function AnalyzeJob() {
       let res;
       
       const headers = {};
-      if (token) {
+      if (token && token !== 'null' && token !== 'undefined') {
         headers['Authorization'] = `Bearer ${token}`;
       }
 

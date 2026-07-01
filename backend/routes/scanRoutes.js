@@ -15,7 +15,12 @@ const upload = multer({
 // We make protect optional on analysis endpoints, meaning if a user is logged in they get history logged, 
 // but anonymous guests can still run scans.
 const optionalProtect = (req, res, next) => {
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer') &&
+    req.headers.authorization.split(' ')[1] !== 'null' &&
+    req.headers.authorization.split(' ')[1] !== 'undefined'
+  ) {
     return protect(req, res, next);
   }
   next();

@@ -25,7 +25,7 @@ export default function EmailScanner() {
 
     try {
       const headers = { 'Content-Type': 'application/json' };
-      if (token) {
+      if (token && token !== 'null' && token !== 'undefined') {
         headers['Authorization'] = `Bearer ${token}`;
       }
 
